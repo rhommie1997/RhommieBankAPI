@@ -1,0 +1,59 @@
+﻿@using RhommieBank.Web.ViewModels;
+@model List<RekeningViewModel>
+
+<div class="card shadow border-0 my-4">
+    <div class="row">
+        <div class="col-12 text-center">
+            Person List
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-6"></div>
+            <div class="col-6 text-end">
+                <a asp-action="Add" id="btnCreate" class="btn btn-outline-primary"><i class="bi bi-plus-square">Create</i></a>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                @{
+                    int i = 1;
+                }
+
+
+                <tr>
+                    <th>No</th>
+                    <th>No Rekening</th>
+                    <th>Full Name</th>
+                    <th>Saldo</th>
+                    <th>Bank</th>
+                    <th>Is Access</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var data in Model)
+                {
+                    <tr>
+                        <td>@(i++)</td>
+                        <td>@data.no_rekening</td>
+                        <td>@data.person_name</td>
+                        <td>@data.saldo</td>
+                        <td>@data.BankName</td>
+                        <td>@data.isAccess</td>
+                        <td>
+                            <a asp-action="Update" asp-route-norek="@data.no_rekening" class="btn btn-warning">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a asp-action="Delete" asp-route-norek="@data.no_rekening" class="btn btn-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

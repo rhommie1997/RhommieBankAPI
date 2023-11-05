@@ -1,0 +1,74 @@
+﻿@using RhommieBank.Web.ViewModels;
+@model RekeningViewModel
+
+<form asp-action="Save">
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-center">Create Rekening</h1>
+        <hr />
+        <div class="row">
+            <input type="hidden" name="Type" value="Add" />
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;">No Rekening</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="no_rekening" class="form-control" readonly/>
+                <span asp-validation-for="no_rekening" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;">Person List</label>
+            </div>
+            <div class="col-10 pb-3">
+                <select id="person" class="form-select" aria-describedby="person" asp-for="person_id" value="@Model.person_id">
+                    <option selected value="">Choose...</option>
+                    @foreach(var person in Model.PersonList){
+                        <option value="@person.Id">@person.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="person_id" class="text-danger"></span>
+                <div id="personHelp" class="form-text">Pick Person Lists.</div>
+            </div>
+
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;">Saldo</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="saldo" class="form-control" type="number" />
+                <span asp-validation-for="saldo" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;">Bank List</label>
+            </div>
+            <div class="col-10 pb-3">
+                <select id="bank" class="form-select" aria-describedby="person" asp-for="BankCode" value="@Model.BankCode">
+                    <option selected value="">Choose...</option>
+                    @foreach (var bank in Model.BankList)
+                    {
+                        <option value="@bank.Code">@bank.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="BankCode" class="text-danger"></span>
+                <div id="bankHelp" class="form-text">Pick Bank Lists.</div>
+            </div>
+
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;">Is Access ?</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input class="form-check-input" type="checkbox" id="isAccess" asp-for="isAccess">
+            </div>
+            
+            <div class="col-5 offset-2">
+                <a asp-action="Index" class="btn-primary btn form-control">Back to list</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Create" class="btn btn-success form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

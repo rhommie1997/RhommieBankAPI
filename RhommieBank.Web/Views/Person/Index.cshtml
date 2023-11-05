@@ -1,0 +1,49 @@
+﻿@using RhommieBank.Web.ViewModels;
+@model List<PersonViewModel>
+
+<div class="card shadow border-0 my-4">
+    <div class="row">
+        <div class="col-12 text-center">
+            Person List
+        </div>
+    </div>
+    <div class="card-body p-4">
+        <div class="row pb-3">
+            <div class="col-6"></div>
+            <div class="col-6 text-end">
+                <a asp-action="Add" id="btnCreate"  class="btn btn-outline-primary"><i class="bi bi-plus-square">Create</i></a>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Created By</th>
+                    <th>Created Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var data in Model){
+                   <tr>
+                        <td>@data.name</td>
+                        <td>@data.age</td>
+                        <td>@data.created_by</td>
+                        <td>@data.created_dt.ToString("dd-MM-yyyy")</td>
+                        <td>
+                            <a asp-action="Update" asp-route-id="@data.Id" class="btn btn-warning">
+                                <i class="bi bi-pencil"></i>
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@data.Id" class="btn btn-danger">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </td>
+                   </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,37 @@
+﻿@using RhommieBank.Web.ViewModels;
+@model BankViewModel
+
+<form asp-action="Save">
+    <br />
+    <div class="container border p-3">
+        <h1 class="text-center">Create Person</h1>
+        <hr />
+        <div class="row">
+            <input type="hidden" name="Type" value="Edit" />
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;">Bank Code</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="BankCode" class="form-control" />
+                <span asp-validation-for="BankCode" class="text-danger"></span>
+            </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;">Bank Name</label>
+            </div>
+            <div class="col-10 pb-3">
+                <input asp-for="BankName" class="form-control" />
+                <span asp-validation-for="BankName" class="text-danger"></span>
+            </div>
+            <div class="col-5 offset-2">
+                <a asp-action="Index" class="btn-primary btn form-control">Back to list</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Update" class="btn btn-success form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
