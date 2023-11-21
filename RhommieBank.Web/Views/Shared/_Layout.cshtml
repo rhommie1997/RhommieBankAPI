@@ -5,44 +5,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - RhommieBank.Web</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link href="~/css/rhommiestyle.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" />
     <link rel="stylesheet" href="~/RhommieBank.Web.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Box Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RhommieBank.Web</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Dropdown
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" asp-controller="Person" asp-action="Index">Person</a></li>
-                                <li><a class="dropdown-item" asp-controller="Bank" asp-action="Index">Bank</a></li>
-                                <li><a class="dropdown-item" asp-controller="Rekening" asp-action="Index">Rekening</a></li>
-                                <li><hr class="dropdown-divider"></li>
-                            </ul>
-                        </li>
-                    </ul>
+    <!-- ====== HEADER ====== -->
+
+
+
+
+    <div class="header">
+        <div class="header_container dropdown">
+            <img src="~/img/anya.jpg" alt="" class="header_img">
+            <a class="header_logo" id="header_title">Rhommie Bank</a>
+            <div class="header_search">
+                <input type="search" placeholder="Search" class="header_input">
+                <i class='bx bx-search-alt-2 header_icon'></i>
+            </div>
+
+            <div class="header_toggle">
+                <i class='bx bx-menu' id="header-toggle"></i>
+            </div>
+        </div>
+    </div>
+    <!-- ====== NAVBAR ====== -->
+    <div class="nav" id="navbar">
+        <div class="nav_container">
+            <a href="/" class="nav_link nav_logo">
+                <i class='bx bx-lemon nav_icon'></i>
+                <span class="nav_logo-name">Rhommie Bank</span>
+            </a>
+
+            <div class="nav_list">
+
+                <div class="nav_items nav_profiles">
+                    <h3 class="nav_subtitle">Profile</h3>
+                    <a class="nav_link" href="/">
+                        <i class='bx bx-home nav_icon'></i>
+                        <span class="nav_name">Home</span>
+                    </a>
+
+                    <a class="nav_link" asp-area="" asp-controller="Home" asp-action="Privacy">
+                        <i class='bx bx-message-rounded nav_icon'></i>
+                        <span class="nav_name">Privacy</span>
+                    </a>
+                </div>
+
+                <div class="nav_items">
+                    <h3 class="nav_subtitle">Menu</h3>
+
+                    <div class="nav_dropdown" id="nav_Master">
+                        <a class="nav_link">
+                            <i class='bx bxs-data nav_icon'></i>
+                            <span class="nav_name">Master</span>
+                            <i class='bx bxs-chevron-down-circle nav_icon nav_dropdown-icon'></i>
+                        </a>
+                        <div class="nav_dropdown-collapse">
+                            <div class="nav_dropdown-content">
+                                <a class="nav_dropdown-item" asp-area="" asp-controller="Rekening" asp-action="Index">Rekening</a>
+                                <a class="nav_dropdown-item" asp-area="" asp-controller="Person" asp-action="Index">Person</a>
+                                <a class="nav_dropdown-item" asp-area="" asp-controller="Bank" asp-action="Index">Bank</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="nav_dropdown" id="nav_SingleTransfer">
+                        <a class="nav_link">
+                            <i class='bx bx-transfer nav_icon'></i>
+                            <span class="nav_name">Single Transfer</span>
+                            <i class='bx bxs-chevron-down-circle nav_icon nav_dropdown-icon'></i>
+                        </a>
+                        <div class="nav_dropdown-collapse">
+                            <div class="nav_dropdown-content">
+                                <a class="nav_dropdown-item" asp-area="" asp-controller="SingleTransfer" asp-action="inhouse">In-House</a>
+                                <a class="nav_dropdown-item" asp-area="" asp-controller="SingleTransfer" asp-action="domestic">Domestic</a>
+                                <a class="nav_dropdown-item" asp-area="" asp-controller="SingleTransfer" asp-action="international">International</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a class="nav_link" id="trLog" asp-area="" asp-controller="TransactionLog" asp-action="Index">
+                        <i class='bx bx-transfer-alt nav_icon'></i>
+                        <span class="nav_name">Transaction Log</span>
+                    </a>
+
+                    <a class="nav_link" id="UpdateCurrency" asp-area="" asp-controller="CurrencyRate" asp-action="Index">
+                        <i class='bx bx-money-withdraw nav_icon'></i>
+                        <span class="nav_name">Currency Rates</span>
+                    </a>
+
                 </div>
             </div>
-        </nav>
-    </header>
+            <a class="nav_link nav_logout" asp-area="" asp-controller="Home" asp-action="Logout">
+                <i class='bx bx-log-out nav_icon'></i>
+                <span class="nav_name">Log Out</span>
+            </a>
+        </div>
+    </div>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -52,12 +120,13 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            By Rhommie
+            &copy; 2022 - Rhommie_Bank_Web_App - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <script src="~/js/rhommiescript.js"></script>
 </body>
 </html>
