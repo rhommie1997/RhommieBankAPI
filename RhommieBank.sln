@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RhommieBank.Services.Person
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RhommieBank.Web", "RhommieBank.Web\RhommieBank.Web.csproj", "{B3B8D952-3E0B-498C-80BA-03EDA1950935}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhommieBank.Services.AuthAPI", "RhommieBank.Services.AuthAPI\RhommieBank.Services.AuthAPI.csproj", "{18D3AB70-2012-4ECA-869F-EA49A46DD13F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,10 +29,6 @@ Global
 		{B3B8D952-3E0B-498C-80BA-03EDA1950935}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3B8D952-3E0B-498C-80BA-03EDA1950935}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3B8D952-3E0B-498C-80BA-03EDA1950935}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18D3AB70-2012-4ECA-869F-EA49A46DD13F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{18D3AB70-2012-4ECA-869F-EA49A46DD13F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18D3AB70-2012-4ECA-869F-EA49A46DD13F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{18D3AB70-2012-4ECA-869F-EA49A46DD13F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,7 +36,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{759EAA19-FA2C-446E-887A-BA5131E8B9FF} = {278F3681-7F21-453D-8AC0-FF0D37184E6B}
 		{B3B8D952-3E0B-498C-80BA-03EDA1950935} = {685D864F-797E-4235-9EBE-7B6F5114B09B}
-		{18D3AB70-2012-4ECA-869F-EA49A46DD13F} = {278F3681-7F21-453D-8AC0-FF0D37184E6B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {626146A1-60A4-4205-9564-8D369DCCAE3D}
