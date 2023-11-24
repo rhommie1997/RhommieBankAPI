@@ -13,10 +13,20 @@ namespace RhommieBank.Services.PersonAPI.Data
         public DbSet<Person> Persons { get; set; }
         public DbSet<Bank> Banks { get; set; }
         public DbSet<Rekening> Rekenings { get; set; }
+        public DbSet<User> UserLogins { get; set; }
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
             base.OnModelCreating(mb);
+
+            mb.Entity<User>().HasData(new User() {
+                username = "rhommie",
+                password = "123",
+                email = "rhommie.1997@gmail.com",
+                imagePath = null,
+                isAdmin = true,
+                nickname = "Rhommie"
+            });
 
             mb.Entity<Person>().HasData(new Person() {
                 id = 1,
