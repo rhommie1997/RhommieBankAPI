@@ -1,0 +1,64 @@
+﻿@using RhommieBank.Web.ViewModels
+@model RhommieBank.Web.ViewModels.UserLoginViewModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link href="~/css/rhommiestyle.css" rel="stylesheet" />
+
+    <!-- Jquery -->
+    <script src="~/js/jquery-3.6.0.min.js"></script>
+
+</head>
+<body>
+
+    <form asp-controller="Login" asp-action="Index" method="post">
+        <div class="form-control w-50 mx-auto mt-4">
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <input type="text" id="username" class="form-control" asp-for="username" />
+                <label class="form-label" for="username">Username</label>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <input type="password" id="password" class="form-control" asp-for="password" />
+                <label class="form-label" for="password">Password</label>
+            </div>
+
+            <!-- Submit button -->
+            <div class="col text-center">
+                <button type="submit" class="btn btn-primary btn-block mb-4 ">Sign in</button>
+            </div>
+        </div>
+
+        @if (ViewData["ValidateMessage"] != null)
+        {
+            <br />
+            <br />
+
+            <div class="alert alert-danger alert-dismissible fade show m-5" role="alert">
+                <strong>@ViewData["ValidateMessage"]</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+        }
+
+    </form>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/rhommiescript.js"></script>
+</body>
+</html>

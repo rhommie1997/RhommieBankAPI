@@ -8,16 +8,19 @@ namespace RhommieBank.Web.Service.Services
     public class BankService : IBankService
     {
         private readonly IBaseService bs;
-        public BankService(IBaseService bs)
+        private readonly HttpContext httpContext;
+        public BankService(IBaseService bs, IHttpContextAccessor httpContextAccessor)
         {
             this.bs = bs;
+            httpContext = httpContextAccessor.HttpContext ?? throw new ArgumentNullException(nameof(httpContextAccessor.HttpContext));
         }
         public async Task<ResponseDto?> GetAllBanksAsync()
         {
             return await bs.SendAsync(new RequestDto()
             {
                 ApiType = SD.ApiType.GET,
-                Url = SD.RhommieBankAPIBase + "/api/BankAPI"
+                Url = SD.RhommieBankAPIBase + "/api/BankAPI",
+                AccessToken = httpContext.User.Claims.FirstOrDefault(x => x.Type == "token")?.Value ?? ""
             });
         }
 
@@ -27,7 +30,8 @@ namespace RhommieBank.Web.Service.Services
             {
                 ApiType = SD.ApiType.POST,
                 Data = bank,
-                Url = SD.RhommieBankAPIBase + "/api/BankAPI"
+                Url = SD.RhommieBankAPIBase + "/api/BankAPI",
+                AccessToken = httpContext.User.Claims.FirstOrDefault(x => x.Type == "token")?.Value ?? ""
             });
         }
 
@@ -36,7 +40,8 @@ namespace RhommieBank.Web.Service.Services
             return await bs.SendAsync(new RequestDto()
             {
                 ApiType = SD.ApiType.GET,
-                Url = SD.RhommieBankAPIBase + "/api/BankAPI/" + BankCode
+                Url = SD.RhommieBankAPIBase + "/api/BankAPI/" + BankCode,
+                AccessToken = httpContext.User.Claims.FirstOrDefault(x => x.Type == "token")?.Value ?? ""
             });
         }
 
@@ -46,7 +51,8 @@ namespace RhommieBank.Web.Service.Services
             {
                 ApiType = SD.ApiType.PUT,
                 Data = bank,
-                Url = SD.RhommieBankAPIBase + "/api/BankAPI"
+                Url = SD.RhommieBankAPIBase + "/api/BankAPI",
+                AccessToken = httpContext.User.Claims.FirstOrDefault(x => x.Type == "token")?.Value ?? ""
             });
         }
 
@@ -55,7 +61,8 @@ namespace RhommieBank.Web.Service.Services
             return await bs.SendAsync(new RequestDto()
             {
                 ApiType = SD.ApiType.DELETE,
-                Url = SD.RhommieBankAPIBase + "/api/BankAPI?BankCode=" + BankCode
+                Url = SD.RhommieBankAPIBase + "/api/BankAPI?BankCode=" + BankCode,
+                AccessToken = httpContext.User.Claims.FirstOrDefault(x => x.Type == "token")?.Value ?? ""
             });
         }
     }

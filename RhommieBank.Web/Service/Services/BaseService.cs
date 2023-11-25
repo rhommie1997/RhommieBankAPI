@@ -2,6 +2,7 @@
 using RhommieBank.Web.Models;
 using RhommieBank.Web.Service.Abstract;
 using System.Net;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json.Serialization;
 using static RhommieBank.Web.Util.SD;
@@ -23,6 +24,10 @@ namespace RhommieBank.Web.Service.Services
                 HttpClient client = httpClientFactory.CreateClient("RhommieBankAPI");
                 HttpRequestMessage message = new();
                 message.Headers.Add("Accept", "application/json");
+                if (!string.IsNullOrEmpty(reqDto.AccessToken))
+                {
+                    message.Headers.Authorization = new AuthenticationHeaderValue("Bearer", reqDto.AccessToken);
+                }
                 message.RequestUri = new Uri(reqDto.Url);
                 if (reqDto.Data != null)
                 {
@@ -73,7 +78,6 @@ namespace RhommieBank.Web.Service.Services
                 };
                 return dto;
             }
-            
         }
     }
 }

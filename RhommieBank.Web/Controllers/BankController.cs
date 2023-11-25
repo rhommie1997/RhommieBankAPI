@@ -11,6 +11,7 @@ namespace RhommieBank.Web.Controllers
     {
 
         private readonly IBankService bankService;
+
         public BankController(IBankService bs)
         {
             this.bankService = bs;
@@ -19,6 +20,8 @@ namespace RhommieBank.Web.Controllers
         public async Task<IActionResult> Index()
         {
             List<BankViewModel>? listBank = new();
+
+            
 
             ResponseDto? response = await bankService.GetAllBanksAsync();
             if (response != null && response.IsSuccess)

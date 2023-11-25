@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{6390
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{A9F50A6D-F7E2-436A-ABB2-44995991DBD7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{278F3681-7F21-453D-8AC0-FF0D37184E6B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{278F3681-7F21-453D-8AC0-FF0D37184E6B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RhommieBank.Services.PersonAPI", "RhommieBank.Services.PersonAPI\RhommieBank.Services.PersonAPI.csproj", "{759EAA19-FA2C-446E-887A-BA5131E8B9FF}"
 EndProject
