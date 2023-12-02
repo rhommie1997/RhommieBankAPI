@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RhommieBank.Services.PersonAPI.Configuration;
 using RhommieBank.Services.PersonAPI.Models;
+using System.Reflection.Emit;
 
 namespace RhommieBank.Services.PersonAPI.Data
 {
@@ -17,6 +19,28 @@ namespace RhommieBank.Services.PersonAPI.Data
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
+            //// Primary Key
+            //modelBuilder.Entity<Person>().HasKey(p => p.PersonId);
+
+            //// Nullable column
+            //modelBuilder.Entity<Person>().Property(p => p.FirstName).IsRequired(false);
+
+            //// Max length for varchar column
+            //modelBuilder.Entity<Person>().Property(p => p.FirstName).HasMaxLength(50);
+
+            //// Identity (auto-increment) for a column
+            //modelBuilder.Entity<Person>().Property(p => p.PersonId).ValueGeneratedOnAdd();
+
+            //// Unique constraint for a column
+            //modelBuilder.Entity<Rekening>().HasIndex(r => r.NomorRekening).IsUnique();
+
+            //// Default value for a column
+            //modelBuilder.Entity<Person>().Property(p => p.Age).HasDefaultValue(18);
+
+            // Gunakan konfigurasi untuk entitas Person
+            mb.ApplyConfiguration(new PersonConfiguration());
+
+
             base.OnModelCreating(mb);
 
             mb.Entity<User>().HasData(new User() {
