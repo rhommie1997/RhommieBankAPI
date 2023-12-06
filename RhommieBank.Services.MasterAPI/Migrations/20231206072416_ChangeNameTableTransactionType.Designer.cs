@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RhommieBank.Services.MasterAPI.Data;
 
@@ -11,9 +12,11 @@ using RhommieBank.Services.MasterAPI.Data;
 namespace RhommieBank.Services.MasterAPI.Migrations
 {
     [DbContext(typeof(RhommieBankDbContext))]
-    partial class RhommieBankDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231206072416_ChangeNameTableTransactionType")]
+    partial class ChangeNameTableTransactionType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -31,13 +34,7 @@ namespace RhommieBank.Services.MasterAPI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CurrencyCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.HasKey("BankCode");
-
-                    b.HasIndex("CurrencyCode");
 
                     b.ToTable("Bank");
 
@@ -45,82 +42,22 @@ namespace RhommieBank.Services.MasterAPI.Migrations
                         new
                         {
                             BankCode = "014",
-                            BankName = "BCA",
-                            CurrencyCode = "IDR"
+                            BankName = "BCA"
                         },
                         new
                         {
                             BankCode = "002",
-                            BankName = "BRI",
-                            CurrencyCode = "IDR"
+                            BankName = "BRI"
                         },
                         new
                         {
                             BankCode = "008",
-                            BankName = "Bank Mandiri",
-                            CurrencyCode = "IDR"
+                            BankName = "Bank Mandiri"
                         },
                         new
                         {
                             BankCode = "009",
-                            BankName = "BNI",
-                            CurrencyCode = "IDR"
-                        });
-                });
-
-            modelBuilder.Entity("RhommieBank.Services.MasterAPI.Models.Currency", b =>
-                {
-                    b.Property<string>("CurrencyCode")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Country")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CurrencyName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("CurrencyCode");
-
-                    b.ToTable("Currency");
-
-                    b.HasData(
-                        new
-                        {
-                            CurrencyCode = "IDR",
-                            Country = "Indonesia",
-                            CurrencyName = "Indonesian Rupiah"
-                        },
-                        new
-                        {
-                            CurrencyCode = "AUD",
-                            Country = "Australia",
-                            CurrencyName = "Australian Dollar"
-                        },
-                        new
-                        {
-                            CurrencyCode = "GBP",
-                            Country = "United Kingdom",
-                            CurrencyName = "Sterling"
-                        },
-                        new
-                        {
-                            CurrencyCode = "JPY",
-                            Country = "Japan",
-                            CurrencyName = "Japan Yen"
-                        },
-                        new
-                        {
-                            CurrencyCode = "MYR",
-                            Country = "Malaysia",
-                            CurrencyName = "Malaysian Ringgit"
-                        },
-                        new
-                        {
-                            CurrencyCode = "USD",
-                            Country = "United States",
-                            CurrencyName = "US Dollar"
+                            BankName = "BNI"
                         });
                 });
 
@@ -157,7 +94,7 @@ namespace RhommieBank.Services.MasterAPI.Migrations
                             id = 1,
                             age = 22,
                             created_by = "System",
-                            created_dt = new DateTime(2023, 12, 6, 15, 37, 12, 2, DateTimeKind.Local).AddTicks(9004),
+                            created_dt = new DateTime(2023, 12, 6, 14, 24, 16, 578, DateTimeKind.Local).AddTicks(1816),
                             name = "Erling Haaland"
                         },
                         new
@@ -165,7 +102,7 @@ namespace RhommieBank.Services.MasterAPI.Migrations
                             id = 2,
                             age = 24,
                             created_by = "System",
-                            created_dt = new DateTime(2023, 12, 6, 15, 37, 12, 2, DateTimeKind.Local).AddTicks(9027),
+                            created_dt = new DateTime(2023, 12, 6, 14, 24, 16, 578, DateTimeKind.Local).AddTicks(1836),
                             name = "Kylian Mbappe"
                         });
                 });
@@ -338,17 +275,6 @@ namespace RhommieBank.Services.MasterAPI.Migrations
                         });
                 });
 
-            modelBuilder.Entity("RhommieBank.Services.MasterAPI.Models.Bank", b =>
-                {
-                    b.HasOne("RhommieBank.Services.MasterAPI.Models.Currency", "Currency")
-                        .WithMany("Banks")
-                        .HasForeignKey("CurrencyCode")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Currency");
-                });
-
             modelBuilder.Entity("RhommieBank.Services.MasterAPI.Models.Rekening", b =>
                 {
                     b.HasOne("RhommieBank.Services.MasterAPI.Models.Bank", "Bank")
@@ -398,11 +324,6 @@ namespace RhommieBank.Services.MasterAPI.Migrations
             modelBuilder.Entity("RhommieBank.Services.MasterAPI.Models.Bank", b =>
                 {
                     b.Navigation("Rekenings");
-                });
-
-            modelBuilder.Entity("RhommieBank.Services.MasterAPI.Models.Currency", b =>
-                {
-                    b.Navigation("Banks");
                 });
 
             modelBuilder.Entity("RhommieBank.Services.MasterAPI.Models.Person", b =>

@@ -60,6 +60,7 @@ namespace RhommieBank.Services.MasterAPI.Controllers
                         uvm.nickname = getUser.nickname;
                         uvm.isAdmin = getUser.isAdmin;
                         uvm.imagePath = getUser.imagePath;
+                        uvm.PersonID = getUser.PersonID;
                         uvm.Token = GetToken(uvm);
 
                         var principal = ValidateToken(uvm.Token);
@@ -114,6 +115,7 @@ namespace RhommieBank.Services.MasterAPI.Controllers
                 new Claim("NickName",user.nickname ?? ""),
                 new Claim("IsAdmin",user.isAdmin.ToString()),
                 new Claim("ImagePath",user.imagePath ?? ""),
+                new Claim("PersonID",user.PersonID.ToString()),
 
             };
 

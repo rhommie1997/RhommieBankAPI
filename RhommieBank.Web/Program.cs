@@ -23,6 +23,7 @@ builder.Services.AddHttpClient<IPersonService, PersonService>();
 builder.Services.AddHttpClient<IBankService, BankService>();
 builder.Services.AddHttpClient<IRekeningService, RekeningService>();
 builder.Services.AddHttpClient<ILoginService, LoginService>();
+builder.Services.AddHttpClient<ISingleTransferService, SingleTransferService>();
 
 SD.RhommieBankAPIBase = builder.Configuration["ServiceUrls:RhommieBankAPI"];
 
@@ -32,6 +33,7 @@ builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<IBankService, BankService>();
 builder.Services.AddScoped<IRekeningService, RekeningService>();
 builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<ISingleTransferService, SingleTransferService>();
 
 var app = builder.Build();
 

@@ -1,0 +1,159 @@
+﻿
+@using RhommieBank.Web.ViewModels;
+@using RhommieBank.Web.ViewModels.Common;
+@model SingleTransferViewModel
+
+@{
+
+    ResultMessage result = (ResultMessage)ViewData["result"];
+
+}
+
+
+<form method="post" class="row g-3 w-50" asp-controller="SingleTransfer" asp-action="inhouseConfirmation">
+
+    @if (result != null)
+    {
+        if (result.meesageType == "error")
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong>@result.meesageName</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+    }
+
+    <input type="hidden" id="trFromRek" value="" asp-for="TransferFrom" />
+    <input type="hidden" id="trToRek" value="" asp-for="TransferTo" />
+
+    <div class="col-md-7">
+        <label for="trFrom" class="form-label">Transfer From</label>
+        <select id="trFrom" class="form-select" aria-describedby="trFrom" asp-for="TransferFrom">
+            <option selected value="">Choose...</option>
+
+            @foreach(var rek in Model.Rekenings){
+                <option value="@rek.NoRekening">@rek.FullName</option>
+            }
+        </select>
+        <div id="trFromHelp" class="form-text">Pick Transfer From.</div>
+    </div>
+
+    <div class="col-8">
+        <label for="saldo" class="form-label">Amount</label>
+        <input type="text" pattern="\d*" class="form-control" id="amount" aria-describedby="amount" step="any" min="10000" disabled asp-for="Amount">
+        <div id="saldoHelp" class="form-text">Input Amount (Minimal 10000).</div>
+    </div>
+
+    @*<input type="number" class="form-control" id="amount" aria-describedby="amount" step="any" min="10000" disabled>*@
+
+
+    <div class="col-md-7">
+        <label for="trTo" class="form-label">Transfer To</label>
+        <select id="trTo" class="form-select" aria-describedby="trTo" disabled>
+            <option selected value="">Choose...</option>
+            @foreach (var rek in Model.Rekenings)
+            {
+                <option value="@rek.NoRekening">@rek.FullName</option>
+            }
+        </select>
+        <div id="trToHelp" class="form-text">Pick Transfer To.</div>
+    </div>
+
+    <div class="col-md-8">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" id="description" aria-label="description" disabled asp-for="Description"></textarea>
+    </div>
+
+
+
+    <div class="col-6">
+        <button type="submit" class="btn btn-success"><i class='bx bx-chevrons-right'></i>Next</button>
+    </div>
+    <div class="col-6">
+        <a class="btn btn-secondary" href="/Home/Index"><i class='bx bx-arrow-back'></i>Back</a>
+    </div>
+</form>
+
+<script>
+
+
+    var rupiah = (number) => {
+        return new Intl.NumberFormat("id-ID", {
+            style: "currency",
+            currency: "IDR"
+        }).format(number);
+    }
+
+
+    $("#trFrom").change(function () {
+        var trFrom = $("#trFrom").val();
+
+        $("#trTo option").attr("hidden", false);
+
+        if(trFrom!=""){
+            var trFromSplit = trFrom.split("#");
+            var saldo = rupiah(trFromSplit[1]);
+            saldo = saldo.replace("Rp","Rp.")
+
+
+            $("#trFromHelp").html("Saldo : " + saldo);
+
+            $("#amount").attr("disabled",false);
+            $("#trTo").attr("disabled", false);
+            $("#description").attr("disabled", false);
+            //$("#trFrom").attr("disabled", true);
+
+            $("#amount").attr("maxlength", trFromSplit[1].length);
+
+            $("#trFromRek").val(trFromSplit[0]);
+
+            $("#trTo option[value='"+trFrom+"']").attr("hidden",true);
+            //$("#trFrom option[value='1000000004#5000000000']").text();
+
+        }
+        //else{
+        //    $("#trFromHelp").html("Input Transfer To.");
+        //    $("#amount").attr("disabled", true);
+        //    $("#trTo").attr("disabled", true);
+        //    $("#description").attr("disabled", true);
+        //    $("#trFrom").attr("disabled", true);
+        //    $("#trFromRek").val('');
+        //}
+
+
+    });
+
+    $("#trTo").change(function(){
+        var trTo = $("#trTo").val();
+
+        $("#trFrom option").attr("hidden", false);
+
+        if (trTo != "") {
+            var trToSplit = trTo.split("#");
+            $("#trToRek").val(trToSplit[0]);
+
+            $("#trFrom option[value='" + trTo + "']").attr("hidden", true);
+        }
+        else{
+            $("#trToRek").val('');
+        }
+    });
+
+    $("#amount").keyup(function(){
+
+        var trFrom = $("#trFrom").val();
+
+        if (trFrom != "") {
+            var trFromSplit = trFrom.split("#");
+            trFrom = parseInt(trFromSplit[1]);
+            amount = parseInt($("#amount").val());
+            if(amount>trFrom){
+                $("#amount").val(trFrom);
+            }
+        }
+
+
+    });
+
+
+</script>

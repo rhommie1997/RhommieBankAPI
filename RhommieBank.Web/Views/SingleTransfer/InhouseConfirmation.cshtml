@@ -1,0 +1,99 @@
+﻿@using RhommieBank.Web.ViewModels;
+@using RhommieBank.Web.ViewModels.Common;
+@model SingleTransferViewModel
+
+@{
+    
+    ViewData["Title"] = "CONFIRMATION FORM";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="post" class="row g-3 w-50" asp-controller="SingleTransfer" asp-action="inhouseTransaction">
+
+    <table id="inhouseTable" class="table">
+
+        <input type="hidden" value="@Model.UserName" asp-for="UserName" />
+        <input type="hidden" value="@Model.FullName" asp-for="FullName" />
+        <input type="hidden" value="@Model.TransferFrom" asp-for="TransferFrom" />
+        <input type="hidden" value="@Model.TransferTo" asp-for="TransferTo" />
+        <input type="hidden" value="@Model.Amount" asp-for="Amount" />
+        <input type="hidden" value="@Model.Description" asp-for="Description" />
+
+        <tbody id="inhouseTbody">
+            <tr>
+                <td><p class="fw-bold">User Fullname : </p></td>
+                <td>
+                    @Model.FullName
+                </td>
+            </tr>
+            <tr>
+                <td><p class="fw-bold">Transfer From : </p></td>
+                <td>
+                    @Model.TransferFrom
+                </td>
+            </tr>
+            <tr>
+                <td><p class="fw-bold">Balance : </p></td>
+                <td id="balanceValue">
+                </td>
+            </tr>
+            <tr>
+                <td><p class="fw-bold">Transfer To : </p></td>
+                <td>
+                    @Model.TransferTo
+                </td>
+            </tr>
+            <tr>
+                <td><p class="fw-bold">Description : </p></td>
+                <td>
+                    @Model.Description
+                </td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <div class="col-6">
+        <button type="button" id="btnConfirm" class="btn btn-success"><i class='bx bx-add-to-queue'></i>Confirm</button>
+    </div>
+    <div class="col-3">
+        <a class="btn btn-secondary" href="/SingleTransfer/inhouse"><i class='bx bx-arrow-back'></i>Back</a>
+    </div>
+    <div class="col-3">
+        <div class="loader" hidden></div>
+    </div>
+
+    <div id="DivConfirmModal">
+        @Html.Partial("ConfirmModal")
+    </div>
+
+</form>
+
+
+
+
+
+<script>
+    $("#btnConfirm").click(function () {
+        $("#ConfirmModal").modal('show');
+    });
+
+    $("#btnSubmit").click(function () {
+        $("#ConfirmModal").modal('hide');
+        $(".loader").attr("hidden", false);
+    });
+
+    var rupiah = (number) => {
+        return new Intl.NumberFormat("id-ID", {
+            style: "currency",
+            currency: "IDR"
+        }).format(number);
+    }
+
+    //alert(rupiah(inhouse.balance));
+    $("#balanceValue").text(rupiah(@Model.Amount));
+
+        //$(".loader").attr("hidden", false);
+
+</script>

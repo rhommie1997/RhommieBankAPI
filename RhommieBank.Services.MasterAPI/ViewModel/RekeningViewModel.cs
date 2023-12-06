@@ -10,6 +10,8 @@ namespace RhommieBank.Services.MasterAPI.ViewModel
         public decimal saldo { get; set; }
         public string BankCode { get; set; }
         public bool isAccess { get; set; }
+        public bool isDefault { get; set; }
+
     }
 
     public class RekeningViewModel
@@ -21,5 +23,6 @@ namespace RhommieBank.Services.MasterAPI.ViewModel
         public string? BankCode { get; set; }
         public string? BankName { get; set; }
         public bool isAccess { get; set; }
+        public bool isDefault { get; set; }
     }
 }

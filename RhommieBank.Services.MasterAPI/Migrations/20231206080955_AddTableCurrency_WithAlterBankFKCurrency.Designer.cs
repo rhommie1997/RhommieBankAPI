@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RhommieBank.Services.MasterAPI.Data;
 
@@ -11,9 +12,11 @@ using RhommieBank.Services.MasterAPI.Data;
 namespace RhommieBank.Services.MasterAPI.Migrations
 {
     [DbContext(typeof(RhommieBankDbContext))]
-    partial class RhommieBankDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231206080955_AddTableCurrency_WithAlterBankFKCurrency")]
+    partial class AddTableCurrency_WithAlterBankFKCurrency
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -157,7 +160,7 @@ namespace RhommieBank.Services.MasterAPI.Migrations
                             id = 1,
                             age = 22,
                             created_by = "System",
-                            created_dt = new DateTime(2023, 12, 6, 15, 37, 12, 2, DateTimeKind.Local).AddTicks(9004),
+                            created_dt = new DateTime(2023, 12, 6, 15, 9, 54, 815, DateTimeKind.Local).AddTicks(3740),
                             name = "Erling Haaland"
                         },
                         new
@@ -165,7 +168,7 @@ namespace RhommieBank.Services.MasterAPI.Migrations
                             id = 2,
                             age = 24,
                             created_by = "System",
-                            created_dt = new DateTime(2023, 12, 6, 15, 37, 12, 2, DateTimeKind.Local).AddTicks(9027),
+                            created_dt = new DateTime(2023, 12, 6, 15, 9, 54, 815, DateTimeKind.Local).AddTicks(3795),
                             name = "Kylian Mbappe"
                         });
                 });

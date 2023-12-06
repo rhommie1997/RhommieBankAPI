@@ -1,0 +1,70 @@
+﻿@using RhommieBank.Web.ViewModels;
+@using RhommieBank.Web.ViewModels.Common;
+@model SingleTransferViewModel
+
+@{
+    ViewData["Title"] = "RESULT FORM";
+}
+
+@if (Model.result != null)
+{
+    if (Model.result.meesageType == "success")
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>@Model.result.meesageName</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+}
+
+
+<h1>@ViewData["Title"]</h1>
+
+<table id="myTable" class="table">
+    <tbody>
+        <tr>
+            <td><p class="fw-bold">User Fullname : </p></td>
+            <td>
+                @Model.FullName
+            </td>
+        </tr>
+        <tr>
+            <td><p class="fw-bold">Transfer From : </p></td>
+            <td>
+                @Model.TransferFrom
+            </td>
+        </tr>
+        <tr>
+            <td><p class="fw-bold">Balance : </p></td>
+            <td id="balanceValue">
+            </td>
+        </tr>
+        <tr>
+            <td><p class="fw-bold">Transfer To : </p></td>
+            <td>
+                @Model.TransferTo
+            </td>
+        </tr>
+        <tr>
+            <td><p class="fw-bold">Description : </p></td>
+            <td>
+                @Model.Description
+            </td>
+        </tr>
+    </tbody>
+
+</table>
+
+
+<script>
+
+    var rupiah = (number) => {
+        return new Intl.NumberFormat("id-ID", {
+            style: "currency",
+            currency: "IDR"
+        }).format(number);
+    }
+
+    $("#balanceValue").text(rupiah(@Model.Amount));
+
+</script>

@@ -47,11 +47,12 @@ namespace RhommieBank.Web.Controllers
                     {
                         UserViewModel uvm = JsonConvert.DeserializeObject<UserViewModel>(Convert.ToString(result.Result));
                         claims.Add(new Claim("username", uvm.username ?? ""));
-                        claims.Add(new Claim("password", uvm.username ?? ""));
+                        claims.Add(new Claim("password", uvm.password ?? ""));
                         claims.Add(new Claim("email", uvm.email ?? ""));
                         claims.Add(new Claim("nickname", uvm.nickname ?? ""));
                         claims.Add(new Claim("isAdmin", uvm.isAdmin.ToString()));
                         claims.Add(new Claim("imagePath", uvm.imagePath ?? ""));
+                        claims.Add(new Claim("PersonID", uvm.PersonID.ToString()));
                         claims.Add(new Claim("token", uvm.Token ?? ""));
                     }
 

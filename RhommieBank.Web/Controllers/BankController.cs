@@ -38,10 +38,20 @@ namespace RhommieBank.Web.Controllers
 
         public async Task<IActionResult> Add()
         {
-            return View("_Add");
+            var newOne = new BankViewModel();
+
+            var responseCurrency = await bankService.GetAllCurrenciesAsync();
+
+            if (responseCurrency != null && responseCurrency.IsSuccess)
+            {
+                newOne.currencyList = JsonConvert.DeserializeObject<List<CurrencyViewModel>>(Convert.ToString(responseCurrency.Result)).ToList();
+                
+            }
+
+            return View("_Add", newOne);
         }
 
-        public async Task<IActionResult> Save(string Type, BankViewModel data)
+        public async Task<IActionResult> Save(string Type, BankSaveViewModel data)
         {
             if (ModelState.IsValid)
             {
@@ -83,6 +93,14 @@ namespace RhommieBank.Web.Controllers
             if (res != null && res.IsSuccess)
             {
                 BankViewModel bank = JsonConvert.DeserializeObject<BankViewModel>(Convert.ToString(res.Result));
+
+                var responseCurrency = await bankService.GetAllCurrenciesAsync();
+
+                if (responseCurrency != null && responseCurrency.IsSuccess)
+                {
+                    bank.currencyList = JsonConvert.DeserializeObject<List<CurrencyViewModel>>(Convert.ToString(responseCurrency.Result)).ToList();
+
+                }
 
                 return View("_Edit", bank);
             }

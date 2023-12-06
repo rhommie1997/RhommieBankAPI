@@ -4,6 +4,7 @@
     {
         public string BankCode { get; set; }
         public string BankName { get; set; }
+        public string CurrencyCode { get; set; }
 
     }
 }

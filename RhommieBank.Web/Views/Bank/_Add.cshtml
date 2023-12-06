@@ -22,6 +22,21 @@
                 <input asp-for="BankName" class="form-control" />
                 <span asp-validation-for="BankName" class="text-danger"></span>
             </div>
+            <div class="col-2">
+                <label class="control-label pt-2" style="font-size: 20px;">Currency List</label>
+            </div>
+            <div class="col-10 pb-3">
+                <select id="CurrencyCode" class="form-select" aria-describedby="person" asp-for="CurrencyCode" value="@Model.CurrencyCode">
+                    <option selected value="">Choose...</option>
+                    @foreach (var curr in Model.currencyList)
+                    {
+                        <option value="@curr.CurrencyCode">@curr.CurrencyName</option>
+                    }
+                </select>
+                <span asp-validation-for="CurrencyCode" class="text-danger"></span>
+                <div id="currencyHelp" class="form-text">Pick Currencies.</div>
+            </div>
+
             <div class="col-5 offset-2">
                 <a asp-action="Index" class="btn-primary btn form-control">Back to list</a>
             </div>

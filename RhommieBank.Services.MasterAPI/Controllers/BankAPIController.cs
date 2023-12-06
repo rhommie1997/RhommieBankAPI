@@ -106,6 +106,7 @@ namespace RhommieBank.Services.MasterAPI.Controllers
                 {
                     bank.BankCode = bvm.BankCode;
                     bank.BankName = bvm.BankName;
+                    bank.CurrencyCode = bvm.CurrencyCode;
                     _db.Banks.Update(bank);
                     _db.SaveChanges();
                 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RhommieBank.Services.MasterAPI.Data;
 
@@ -11,9 +12,11 @@ using RhommieBank.Services.MasterAPI.Data;
 namespace RhommieBank.Services.MasterAPI.Migrations
 {
     [DbContext(typeof(RhommieBankDbContext))]
-    partial class RhommieBankDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231206083712_AddDbSetTableCurrencies")]
+    partial class AddDbSetTableCurrencies
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

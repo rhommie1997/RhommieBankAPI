@@ -39,7 +39,9 @@ namespace RhommieBank.Services.MasterAPI.Controllers
                         BankCode= x.BankCode,
                         BankName = x.Bank.BankName,
                         isAccess = x.isAccess,
-                        saldo = x.saldo 
+                        saldo = x.saldo ,
+                        isDefault = x.isDefault
+                        
                     }
                 ).ToList();
 
@@ -70,9 +72,10 @@ namespace RhommieBank.Services.MasterAPI.Controllers
                         BankCode = x.BankCode,
                         BankName = x.Bank.BankName,
                         isAccess = x.isAccess,
-                        saldo = x.saldo
+                        saldo = x.saldo,
+                        isDefault = x.isDefault
                     }
-                ).FirstOrDefault();
+                ).FirstOrDefault(x => x.no_rekening == norek);
                 _res.Result = obj;
             }
             catch (Exception e)
@@ -116,6 +119,7 @@ namespace RhommieBank.Services.MasterAPI.Controllers
                     rek.BankCode = rvm.BankCode ?? "014";
                     rek.isAccess = rvm.isAccess;
                     rek.created_dt = DateTime.Now;
+                    rek.isDefault = rvm.isDefault;
                     _db.Rekenings.Update(rek);
                     _db.SaveChanges();
                 }

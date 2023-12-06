@@ -20,6 +20,7 @@
                 <tr>
                     <th>Bank Code</th>
                     <th>Bank Name</th>
+                    <th>Currency</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -29,6 +30,7 @@
                     <tr>
                         <td>@data.BankCode</td>
                         <td>@data.BankName</td>
+                        <td>@data.CurrencyCode</td>
                         <td>
                             <a asp-action="Update" asp-route-code="@data.BankCode" class="btn btn-warning">
                                 <i class="bi bi-pencil"></i>

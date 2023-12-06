@@ -9,6 +9,7 @@
         public bool isAdmin { get; set; }
         public string? imagePath { get; set; }
         public string? Token { get; set; }
+        public int PersonID { get; set; }
     }
 
     public class UserLoginViewModel

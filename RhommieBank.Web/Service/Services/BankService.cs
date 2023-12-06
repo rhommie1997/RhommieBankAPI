@@ -24,7 +24,7 @@ namespace RhommieBank.Web.Service.Services
             });
         }
 
-        public async Task<ResponseDto?> CreateBankAsync(BankViewModel bank)
+        public async Task<ResponseDto?> CreateBankAsync(BankSaveViewModel bank)
         {
             return await bs.SendAsync(new RequestDto()
             {
@@ -45,7 +45,7 @@ namespace RhommieBank.Web.Service.Services
             });
         }
 
-        public async Task<ResponseDto?> UpdateBankAsync(BankViewModel bank)
+        public async Task<ResponseDto?> UpdateBankAsync(BankSaveViewModel bank)
         {
             return await bs.SendAsync(new RequestDto()
             {
@@ -62,6 +62,16 @@ namespace RhommieBank.Web.Service.Services
             {
                 ApiType = SD.ApiType.DELETE,
                 Url = SD.RhommieBankAPIBase + "/api/BankAPI?BankCode=" + BankCode,
+                AccessToken = httpContext.User.Claims.FirstOrDefault(x => x.Type == "token")?.Value ?? ""
+            });
+        }
+
+        public async Task<ResponseDto?> GetAllCurrenciesAsync()
+        {
+            return await bs.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.GET,
+                Url = SD.RhommieBankAPIBase + "/api/CurrencyAPI",
                 AccessToken = httpContext.User.Claims.FirstOrDefault(x => x.Type == "token")?.Value ?? ""
             });
         }

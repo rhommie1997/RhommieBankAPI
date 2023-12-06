@@ -10,6 +10,9 @@ namespace RhommieBank.Services.MasterAPI.Models
         [Key]
         public string BankCode { get; set; }
         public string BankName { get; set; }
+        [ForeignKey("Currency")]
+        public string CurrencyCode { get; set; }
         public ICollection<Rekening> Rekenings { get; set; }
+        public virtual Currency Currency { get; set; }
     }
 }
