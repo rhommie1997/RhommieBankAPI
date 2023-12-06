@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackEnd", "BackEnd", "{278F3681-7F21-453D-8AC0-FF0D37184E6B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RhommieBank.Services.MasterAPI", "RhommieBank.Services.PersonAPI\RhommieBank.Services.MasterAPI.csproj", "{759EAA19-FA2C-446E-887A-BA5131E8B9FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RhommieBank.Services.MasterAPI", "RhommieBank.Services.MasterAPI\RhommieBank.Services.MasterAPI.csproj", "{759EAA19-FA2C-446E-887A-BA5131E8B9FF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RhommieBank.Web", "RhommieBank.Web\RhommieBank.Web.csproj", "{B3B8D952-3E0B-498C-80BA-03EDA1950935}"
 EndProject
