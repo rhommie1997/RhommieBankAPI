@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RhommieBank.Services.MasterAPI.Models;
 using RhommieBank.Services.PersonAPI.Configuration;
 using RhommieBank.Services.PersonAPI.Models;
 using System.Reflection.Emit;

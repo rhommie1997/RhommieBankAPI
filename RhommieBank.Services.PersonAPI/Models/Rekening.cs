@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using RhommieBank.Services.MasterAPI.Models;
 
 namespace RhommieBank.Services.PersonAPI.Models
 {

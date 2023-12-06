@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using RhommieBank.Services.MasterAPI.Models;
 using RhommieBank.Services.PersonAPI.Data;
-using RhommieBank.Services.PersonAPI.Models;
 using RhommieBank.Services.PersonAPI.Models.Dto;
 using RhommieBank.Services.PersonAPI.ViewModel;
 

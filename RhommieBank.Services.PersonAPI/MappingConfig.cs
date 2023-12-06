@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using RhommieBank.Services.MasterAPI.Models;
 using RhommieBank.Services.PersonAPI.Models;
 using RhommieBank.Services.PersonAPI.ViewModel;
 
